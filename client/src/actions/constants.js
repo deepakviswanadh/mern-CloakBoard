@@ -1,0 +1,9 @@
+export const REG_SUCCESS = "REG_SUCCESS";
+export const REG_FAIL = "REG_FAIL";
+export const SET_ALERT = "SET_ALERT";
+export const REMOVE_ALERT = "REMOVE_ALERT";
+export const LOADED_USER = "LOADED_USER";
+export const AUTH_ERROR = "AUTH_ERROR";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT = "LOGOUT";
