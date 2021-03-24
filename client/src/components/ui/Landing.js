@@ -52,8 +52,10 @@ const Landing = (props) => {
     try {
       let response = await axios.get("/post");
       setPosts(response.data);
-      if (response.data.length === 0)
+      if (response.data.length === 0) {
+        setFetched(false);
         return props.setAlert("no posts found (empty database)", "danger");
+      }
       props.setAlert("posts fetched successfully", "success");
     } catch (err) {
       props.setAlert("server error", "danger");
@@ -175,7 +177,7 @@ const Landing = (props) => {
         {fetched === true && props.auth.isAuthenticated ? (
           <button
             onClick={() => {
-              setToggleComments(true);
+              setToggleComments(!toggleComments);
               props.setAlert("Fetch comments successful", "success");
             }}
             className="ui secondary button"
