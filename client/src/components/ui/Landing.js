@@ -37,10 +37,9 @@ const Landing = (props) => {
     try {
       const body = JSON.stringify(data);
       const url = "/post/comment/" + postId;
-      let comment = await axios.post(url, body, config);
-      console.log(comment);
+      await axios.post(url, body, config);
       props.setAlert("commented successfully", "success");
-      props.setAlert("refresh the page", "success");
+      loadPosts();
     } catch (err) {
       props.setAlert("comment not received", "danger");
     }
