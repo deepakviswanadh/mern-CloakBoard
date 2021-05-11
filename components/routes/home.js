@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const auth = require("../middleware/auth");
-const mongoose = require("mongoose");
+const keys = require("../config/keys");
 
 // @route    GET /post
 // @desc     Get all posts
@@ -74,7 +74,7 @@ router.post("/post/signup", async (req, res) => {
       },
     };
 
-    jwt.sign(payload, "notsecret", { expiresIn: 36000 }, (err, token) => {
+    jwt.sign(payload, keys.jwt_secret, { expiresIn: 36000 }, (err, token) => {
       if (err) throw err;
       res.json({ token });
     });
@@ -147,7 +147,7 @@ router.post("/post/comment/:postid", auth, async (req, res) => {
     if (post) {
       post.comments.unshift(comment);
       await post.save();
-      return res.json({ post });
+      return res.json(post);
     }
     return res
       .status(400)
